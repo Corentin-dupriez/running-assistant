@@ -1,0 +1,19 @@
+[project]
+name = "run-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Corentin Dupriez", email = "dupriez.c@icloud.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "mcp[cli]>=2.2.0",
+]
+
+[project.scripts]
+run-assistant = "run_assistant:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
