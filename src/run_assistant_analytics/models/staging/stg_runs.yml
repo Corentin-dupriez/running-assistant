@@ -1,0 +1,27 @@
+models:
+  - name: stg_runs
+    description: Run (training or official race) data, one row per run.
+    columns:
+      - name: id
+        description: Unique technical ID of the row
+        data_tests:
+          - not_null
+          - unique
+      - name: length_kilometers
+        description: The length of the run in kilometers
+        data_tests:
+          - not_null
+      - name: time_minutes
+        description: The time of the run in minutes
+        data_tests:
+          - not_null
+      - name: elevation_gain
+        description: The elevation gain of the run
+      - name: min_per_km
+        description: The rythm of the run in minutes per kilometers
+      - name: cardiac_freq
+        description: The average cardiac frequency during the run
+      - name: date
+        description: The date when the run took place
+        data_tests:
+          - not_null

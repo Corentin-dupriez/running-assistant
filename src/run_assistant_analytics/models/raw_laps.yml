@@ -1,0 +1,6 @@
+sources:
+  - name: raw_laps
+    database: run_assistant
+    schema: main
+    tables:
+      - name: laps

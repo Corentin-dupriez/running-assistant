@@ -1,0 +1,6 @@
+sources:
+  - name: raw_runs
+    database: run_assistant
+    schema: main
+    tables:
+      - name: runs
