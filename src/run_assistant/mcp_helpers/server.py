@@ -1,5 +1,6 @@
 from mcp.server import MCPServer
 from datetime import date
+from run_assistant.db import queries
 from run_assistant.ingest import ingestion_helpers
 
 mcp = MCPServer()
@@ -44,17 +45,17 @@ def add_running_lap(
 
 @mcp.tool()
 def get_runs():
-    return ingestion_helpers.retrieve_runs()
+    return queries.retrieve_runs()
 
 
 @mcp.tool()
 def get_weekly_run_statistics(start_year: int | None = None):
-    return ingestion_helpers.retrieve_weekly_run_info(start_year)
+    return queries.retrieve_weekly_run_info(start_year)
 
 
 @mcp.tool()
 def get_monthly_run_statistics(start_year: int | None = None):
-    return ingestion_helpers.retrieve_monthly_run_info(start_year)
+    return queries.retrieve_monthly_run_info(start_year)
 
 
 if __name__ == "__main__":
