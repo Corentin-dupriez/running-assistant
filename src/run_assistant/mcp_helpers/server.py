@@ -52,5 +52,10 @@ def get_weekly_run_statistics(start_year: int | None = None):
     return ingestion_helpers.retrieve_weekly_run_info(start_year)
 
 
+@mcp.tool()
+def get_monthly_run_statistics(start_year: int | None = None):
+    return ingestion_helpers.retrieve_monthly_run_info(start_year)
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
