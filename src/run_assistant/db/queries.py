@@ -1,8 +1,9 @@
 import duckdb
 from run_assistant.db.initialize_db import db_path
+from typing import List
 
 
-def _query_to_recors(con, query: str, params: list | None):
+def _query_to_recors(con, query: str, params: list | None) -> List[dict]:
     results = con.execute(query, params or [])
     columns = [c[0] for c in results.description]
     rows = results.fetchall()

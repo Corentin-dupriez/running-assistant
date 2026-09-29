@@ -2,6 +2,13 @@ import argparse
 from datetime import date
 import duckdb
 from run_assistant.db.initialize_db import db_path
+from dbt.cli.main import dbtRunner
+
+
+def run_dbt() -> None:
+    dbt_runner = dbtRunner()
+    cli_args = ["run", "--project-dir", "../run_assistant_analytics/"]
+    _ = dbt_runner.invoke(args=cli_args)
 
 
 def insert_run(args: argparse.Namespace) -> str | None:
@@ -52,6 +59,7 @@ def _insert_run(
         )
         res = con.fetchone()
         if res:
+            run_dbt()
             return str(res[0])
         return None
 
@@ -73,4 +81,5 @@ def _insert_lap(
         )
         res = res.fetchone()
         if res:
+            run_dbt()
             return str(res[0])
