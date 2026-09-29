@@ -2,7 +2,7 @@ from typing import Any, List
 from mcp.server import MCPServer
 from datetime import date
 from run_assistant.db import queries
-from run_assistant.ingest import ingestion_helpers
+from run_assistant.ingest import ingestion_helpers, strava_integration
 
 mcp = MCPServer()
 
@@ -96,6 +96,16 @@ def get_monthly_run_statistics(start_year: int | None = None):
     """
 
     return queries.retrieve_monthly_run_info(start_year)
+
+
+@mcp.tool()
+def insert_strava_data(file_path: str) -> None:
+    """
+    This function is used to insert the csv file exported from Strava, that contains all the activities of the user.
+    Args:
+        file_path: a string with the path to the strava csv file
+    """
+    return strava_integration.insert_activities_file(file_path)
 
 
 if __name__ == "__main__":

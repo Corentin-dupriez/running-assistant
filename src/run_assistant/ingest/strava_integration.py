@@ -3,7 +3,7 @@ from run_assistant.db.initialize_db import db_path
 from run_assistant.ingest.ingestion_helpers import run_dbt
 
 
-def read_activities_file(file_path: str):
+def insert_activities_file(file_path: str) -> None:
     with duckdb.connect(db_path) as con:
         con.execute("DELETE * from strava_activities_data")
         con.execute(
