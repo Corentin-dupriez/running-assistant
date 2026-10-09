@@ -6,4 +6,4 @@ SELECT
     min_per_km,
     cardiac_freq,
     date
-FROM run_assistant.main.runs
+FROM {{ source('raw_runs', 'runs') }}

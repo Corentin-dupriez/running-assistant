@@ -9,20 +9,20 @@ with date_spine_cte as (
 
 trainings_cte as (
     select
-        length_kilometers,
+        length_km,
         time_minutes,
         elevation_gain,
         min_per_km,
         cardiac_freq,
         date
-    from {{ ref('stg_runs' ) }}
+    from {{ ref('int_run_information' ) }}
 )
 
 select
     month_name,
     year_number,
-    sum(length_kilometers) as total_kilometers,
-    avg(length_kilometers) as average_kilometers_per_run,
+    sum(length_km) as total_kilometers,
+    avg(length_km) as average_kilometers_per_run,
     sum(time_minutes) as total_time_minutes,
     avg(time_minutes) as average_run_duration_minutes,
     sum(elevation_gain) as total_elevation_gain,

@@ -1,8 +1,7 @@
-import os
 import duckdb
-from pathlib import Path
+from run_assistant import config
 
-db_path = Path(os.getcwd()).parent.parent / "run_assistant.duckdb"
+db_path = config.db_path
 
 
 def create_db() -> None:
@@ -30,3 +29,7 @@ def create_db() -> None:
             )
             """
         )
+
+
+if __name__ == "__main__":
+    create_db()

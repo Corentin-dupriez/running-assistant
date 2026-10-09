@@ -4,3 +4,8 @@ sources:
     schema: main
     tables:
       - name: runs
+  - name: raw_strava_runs
+    database: run_assistant
+    schema: main
+    tables:
+      - name: strava_activities_data
