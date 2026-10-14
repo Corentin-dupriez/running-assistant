@@ -11,6 +11,10 @@ STRAVA_COLUMN_ALIASES: dict[str, list[str]] = {
     "activity_type": ["Activity Type", "Type d'activité"],
     "elapsed_time_s": ["Elapsed Time", "Temps écoulé"],
     "moving_time_s": ["Moving Time", "Temps de déplacement"],
+    "equipment_name": ["Matériel utilisé pour l'activité"],
+    "equipment_id": ["Matériel"],
+    "max_pace": ["Cadence max."],
+    "avg_pace": ["Cadence moyenne"],
     "distance": ["Distance"],
     "max_heart_rate": [
         "Max Heart Rate",

@@ -14,7 +14,11 @@ def create_db() -> None:
                 elevation_gain FLOAT,
                 min_per_km FLOAT,
                 cardiac_freq INTEGER,
-                date DATE
+                date DATE,
+                equipment_name STRING,
+                equipment_id STRING,
+                max_pace FLOAT,
+                avg_pace FLOAT
             )
         """)
 
@@ -29,6 +33,12 @@ def create_db() -> None:
             )
             """
         )
+
+
+def drop_tables() -> None:
+    with duckdb.connect(db_path) as con:
+        con.sql("DROP TABLE IF EXISTS laps")
+        con.sql("DROP TABLE IF EXISTS runs")
 
 
 if __name__ == "__main__":

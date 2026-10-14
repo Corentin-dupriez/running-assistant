@@ -47,6 +47,8 @@ with strava_data as (
             lpad({{ extract_from_date('activity_date', 1)}}, 2, '0')
         ) as date)
         as date,
+        equipment_name,
+        equipment_id,
         'strava' as source
     from {{ ref('stg_strava_runs') }}
     where activity_type like '%Course%'
@@ -60,6 +62,8 @@ manual_data as (
         round(min_per_km, 2) as min_per_km,
         cardiac_freq,
         date as date,
+        equipment_name,
+        equipment_id,
         'manual' as source
     from {{ ref('stg_runs') }}
 )

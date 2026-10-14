@@ -5,5 +5,7 @@ SELECT
     elevation_gain,
     min_per_km,
     cardiac_freq,
-    date
+    date,
+    equipment_name,
+    equipment_id
 FROM {{ source('raw_runs', 'runs') }}
