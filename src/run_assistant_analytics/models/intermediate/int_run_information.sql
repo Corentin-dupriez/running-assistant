@@ -49,6 +49,8 @@ with strava_data as (
         as date,
         equipment_name,
         equipment_id,
+        intensity,
+        training_load,
         'strava' as source
     from {{ ref('stg_strava_runs') }}
     where activity_type like '%Course%'
@@ -64,6 +66,8 @@ manual_data as (
         date as date,
         equipment_name,
         equipment_id,
+        perceived_effort as intensity,
+        time_minutes * perceived_effort as training_load,
         'manual' as source
     from {{ ref('stg_runs') }}
 )

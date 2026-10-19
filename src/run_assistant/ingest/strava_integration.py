@@ -21,6 +21,8 @@ STRAVA_COLUMN_ALIASES: dict[str, list[str]] = {
         "Fréquence cardiaque maximale",
         "Fréquence cardiaque max.",
     ],
+    "intensity": ["Intensité"],
+    "training_load": ["Charge d’entraînement"],
     "average_heart_rate": ["Average Heart Rate", "Fréquence cardiaque moyenne"],
     "elevation_gain": ["Elevation Gain", "Dénivelé positif"],
     # Pas besoin de mapper les 103 colonnes — seulement celles que tu utilises vraiment

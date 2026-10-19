@@ -7,5 +7,6 @@ SELECT
     cardiac_freq,
     date,
     equipment_name,
-    equipment_id
+    equipment_id,
+    perceived_effort
 FROM {{ source('raw_runs', 'runs') }}

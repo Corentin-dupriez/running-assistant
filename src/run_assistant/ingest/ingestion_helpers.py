@@ -19,6 +19,11 @@ def insert_run(args: argparse.Namespace) -> str | None:
         args.elevation,
         args.rythm,
         args.cardiac_freq,
+        args.equipement_name or None,
+        args.equipement_id or None,
+        args.max_pace or None,
+        args.average_pace or None,
+        args.perceived_effort or None,
     )
 
 
@@ -29,6 +34,11 @@ def _insert_run(
     elevation_gain: float,
     rythm: float,
     cardiac_frequency: int,
+    equipement_name: str | None = None,
+    equipement_id: str | None = None,
+    max_pace: float | None = None,
+    avg_pace: float | None = None,
+    perceived_effort: int | None = None,
 ) -> str | None:
     with duckdb.connect(db_path) as con:
         con.execute(

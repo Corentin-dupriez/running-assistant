@@ -10,6 +10,8 @@ SELECT
     equipment_id,
     max_pace,
     avg_pace,
+    intensity::float AS intensity,
+    training_load::float AS training_load,
     equipment_name,
     equipment_id
 FROM {{ source('raw_strava_runs', 'strava_activities_data') }}

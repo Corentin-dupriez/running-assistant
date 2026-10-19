@@ -18,7 +18,8 @@ def create_db() -> None:
                 equipment_name STRING,
                 equipment_id STRING,
                 max_pace FLOAT,
-                avg_pace FLOAT
+                avg_pace FLOAT,
+                perceived_effort INT
             )
         """)
 
