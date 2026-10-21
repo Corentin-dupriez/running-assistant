@@ -1,0 +1,6 @@
+sources:
+  - name: raw_competitions
+    database: run_assistant
+    schema: main
+    tables:
+      - name: competitions

@@ -7,7 +7,7 @@ def _query_to_recors(con, query: str, params: list | None) -> List[dict]:
     results = con.execute(query, params or [])
     columns = [c[0] for c in results.description]
     rows = results.fetchall()
-    return [dict(zip(columns, rows)) for row in rows]
+    return [dict(zip(columns, row)) for row in rows]
 
 
 def retrieve_run(run_id: str):
@@ -31,7 +31,20 @@ def retrieve_runs():
             con,
             """
             SELECT *
-            FROM runs
+            FROM run_assistant.main.mart_all_runs
+            """,
+            [],
+        )
+        return res
+
+
+def retrieve_injuries():
+    with duckdb.connect(db_path) as con:
+        res = _query_to_recors(
+            con,
+            """
+            SELECT *
+            FROM run_assistant.main.mart_injuries
             """,
             [],
         )
@@ -43,11 +56,13 @@ def retrieve_weekly_run_info(start_year: int | None = None):
             SELECT * 
             FROM run_assistant.main.mart_weekly_training
             """
+    params = []
 
     if start_year is not None:
-        query += f"where year_number >= {start_year}"
+        query += "where year_number >= ?"
+        params.append(start_year)
     with duckdb.connect(db_path) as con:
-        res = _query_to_recors(con, query, [])
+        res = _query_to_recors(con, query, params)
         return res
 
 
@@ -56,9 +71,11 @@ def retrieve_monthly_run_info(start_year: int | None = None):
             SELECT * 
             FROM run_assistant.main.mart_monthly_training
             """
+    params = []
 
     if start_year is not None:
-        query += f"where year_number >= {start_year}"
+        query += "where year_number >= ?"
+        params.append(start_year)
     with duckdb.connect(db_path) as con:
-        res = _query_to_recors(con, query, [])
+        res = _query_to_recors(con, query, params)
         return res

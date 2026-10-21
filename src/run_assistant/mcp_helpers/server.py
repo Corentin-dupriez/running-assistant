@@ -108,5 +108,10 @@ def insert_strava_data(file_path: str) -> None:
     return strava_integration.insert_activities_file(file_path)
 
 
+@mcp.tool()
+def retrieve_injuries():
+    return queries.retrieve_injuries()
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")

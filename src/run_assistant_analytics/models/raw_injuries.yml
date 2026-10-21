@@ -1,0 +1,6 @@
+sources:
+  - name: raw_injuries
+    database: run_assistant
+    schema: main
+    tables:
+      - name: injuries

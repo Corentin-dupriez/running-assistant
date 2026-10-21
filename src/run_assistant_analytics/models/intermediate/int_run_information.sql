@@ -9,7 +9,7 @@ with strava_data as (
             as float
         )
             as length_km,
-        cast(elapsed_time_s as int) as time_minutes,
+        cast(elapsed_time_s as int)  / 60 as time_minutes,
         cast(
             regexp_replace(
                 elevation_gain,
@@ -77,3 +77,4 @@ from manual_data
 union distinct
 select *
 from strava_data
+order by date desc

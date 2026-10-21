@@ -2,9 +2,6 @@ from contextlib import AsyncExitStack
 import os
 import sys
 import asyncio
-from anthropic import Anthropic
-from mcp.client import Client
-from mcp import StdioServerParameters
 from dotenv import load_dotenv
 from run_assistant.core.claude import Claude
 from run_assistant.core.cli_chat import CliChat
@@ -33,9 +30,7 @@ async def main() -> None:
         for i, server_script in enumerate(server_scripts):
             client_id = f"client_{i}_{server_script}"
             client = await stack.enter_async_context(
-                MCPClient(
-                    StdioServerParameters(command="uv", args=["run", "server.py"])
-                )
+                MCPClient(command="uv", args=["run", "server.py"])
             )
             clients[client_id] = client
 

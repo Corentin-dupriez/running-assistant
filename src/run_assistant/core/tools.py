@@ -1,9 +1,8 @@
 import json
-from os import error
 from typing import List, Literal, Optional
 from anthropic.types import Message, ToolResultBlockParam
 from mcp import Client, Tool
-from mcp_types import CallToolResult, TextContent
+from mcp.types import CallToolResult, TextContent
 from run_assistant.mcp_helpers.client import MCPClient
 
 

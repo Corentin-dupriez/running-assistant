@@ -19,8 +19,8 @@ def insert_run(args: argparse.Namespace) -> str | None:
         args.elevation,
         args.rythm,
         args.cardiac_freq,
-        args.equipement_name or None,
-        args.equipement_id or None,
+        args.equipment_name or None,
+        args.equipment_id or None,
         args.max_pace or None,
         args.average_pace or None,
         args.perceived_effort or None,
@@ -88,6 +88,47 @@ def _insert_lap(
             RETURNING ID
             """,
             [run_id, time_minutes, min_per_km, cardiac_frequency],
+        )
+        res = res.fetchone()
+        if res:
+            run_dbt()
+            return str(res[0])
+
+
+def insert_injury(args: argparse.Namespace) -> str | None:
+    return _insert_injury(args.date, args.comment)
+
+
+def _insert_injury(injury_date: str, comment: str) -> str | None:
+    with duckdb.connect(db_path) as con:
+        res = con.execute(
+            """
+            INSERT INTO injuries(id, date, comment) values (uuid(), ?, ?)
+            """,
+            [injury_date, comment],
+        )
+        res = res.fetchone()
+        if res:
+            run_dbt()
+            return str(res[0])
+
+
+def insert_competition(args: argparse.Namespace) -> str | None:
+    return _insert_competition(
+        args.location, args.kilometers, args.date, args.type_race
+    )
+
+
+def _insert_competition(
+    location: str, kilometers: float, competition_date: str, race_type: str
+) -> str | None:
+    with duckdb.connect(db_path) as con:
+        res = con.execute(
+            """
+            INSERT INTO competitions(id, location, length_km, date, race_type)
+            values(uuid(), ?, ?, ?, ?)
+            """,
+            [location, kilometers, competition_date, race_type],
         )
         res = res.fetchone()
         if res:

@@ -53,12 +53,12 @@ class MCPClient:
         await self.connect()
         return self
 
-    async def __aexit__(self):
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.cleanup()
 
 
 async def main() -> None:
-    async with MCPClient(server) as client:
+    async with MCPClient(command="uv", args=["run", "server.py"]) as client:
         result = await client.list_tools()
         print([tool.name for tool in result.tools])
 

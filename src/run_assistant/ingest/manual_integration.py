@@ -1,7 +1,12 @@
 import argparse
-from ingestion_helpers import insert_run, insert_lap
+from run_assistant.ingest.ingestion_helpers import (
+    insert_run,
+    insert_lap,
+    insert_injury,
+    insert_competition,
+)
 from run_assistant.db.initialize_db import db_path, create_db
-from run_assistant.ingest.ingestion_helpers import retrieve_run, retrieve_runs
+from run_assistant.db.queries import retrieve_runs
 
 create_db()
 
@@ -33,6 +38,18 @@ parser_laps.set_defaults(func=insert_lap)
 
 parser_display_runs = subparsers.add_parser("show-runs")
 parser_display_runs.set_defaults(func=retrieve_runs)
+
+parser_injuries = subparsers.add_parser("add-injury")
+parser_injuries.add_argument("-d", "--date")
+parser_injuries.add_argument("-c", "--comment")
+parser_injuries.set_defaults(func=insert_injury)
+
+parser_competitions = subparsers.add_parser("add-competition")
+parser_competitions.add_argument("-l", "--location")
+parser_competitions.add_argument("-km", "--kilometers")
+parser_competitions.add_argument("-d", "--date")
+parser_competitions.add_argument("-t", "--type_race")
+parser_competitions.set_defaults(func=insert_competition)
 
 args = parser.parse_args()
 
