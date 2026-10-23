@@ -51,6 +51,19 @@ def retrieve_injuries():
         return res
 
 
+def retrieve_planned_competitions():
+    with duckdb.connect(db_path) as con:
+        res = _query_to_recors(
+            con,
+            """
+            SELECT *
+            FROM run_assistant.main.mart_competitions_plan
+            """,
+            [],
+        )
+        return res
+
+
 def retrieve_weekly_run_info(start_year: int | None = None):
     query = """
             SELECT * 

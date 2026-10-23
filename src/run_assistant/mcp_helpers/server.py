@@ -99,6 +99,18 @@ def get_monthly_run_statistics(start_year: int | None = None):
 
 
 @mcp.tool()
+def get_competitions_plan():
+    """
+    This function is used to retrieve the competitions planned by the user.
+    It uses a custom db mart to consolidate the official runs planned by the user.
+    It can be used to give advice to the user in his training plan and readiness.
+    Returns:
+        A list of official runs planned by the user
+    """
+    return queries.retrieve_planned_competitions()
+
+
+@mcp.tool()
 def insert_strava_data(file_path: str) -> None:
     """
     This function is used to insert the csv file exported from Strava, that contains all the activities of the user.

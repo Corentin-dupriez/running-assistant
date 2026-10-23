@@ -1,7 +1,15 @@
-from run_assistant.db.initialize_db import create_db, drop_tables
+import os
+from pathlib import Path
+from run_assistant.db.initialize_db import db_path
+import duckdb
 
 if __name__ == "__main__":
-    tables_list = input("Enter the list of tables you want to migrate:\n").split(", ")
-    print(tables_list)
-    drop_tables(tables_list)
-    create_db(tables_list)
+    migrations_folder = Path(os.getcwd()) / "db" / "migrations"
+    last_migration = os.listdir(migrations_folder)[-1]
+    with open(migrations_folder / last_migration, "r") as f:
+        migration_content = f.read()
+        if migration_content.strip()[-1] == ";":
+            migration_content = migration_content.strip()[:-1]
+            print(migration_content)
+        with duckdb.connect(db_path) as con:
+            con.execute(migration_content)

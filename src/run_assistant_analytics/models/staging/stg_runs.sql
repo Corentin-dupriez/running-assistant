@@ -8,5 +8,8 @@ SELECT
     date,
     equipment_name,
     equipment_id,
-    perceived_effort
+    max_pace,
+    avg_pace,
+    perceived_effort,
+    run_type
 FROM {{ source('raw_runs', 'runs') }}
