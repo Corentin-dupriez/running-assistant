@@ -2,13 +2,7 @@ import argparse
 from datetime import date
 import duckdb
 from run_assistant.db.initialize_db import db_path
-from dbt.cli.main import dbtRunner
-
-
-def run_dbt() -> None:
-    dbt_runner = dbtRunner()
-    cli_args = ["run", "--project-dir", "../run_assistant_analytics/"]
-    _ = dbt_runner.invoke(args=cli_args)
+from run_assistant.db.dbt_helpers import run_dbt
 
 
 def insert_run(args: argparse.Namespace) -> str | None:
