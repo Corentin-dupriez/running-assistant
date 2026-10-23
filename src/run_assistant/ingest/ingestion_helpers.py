@@ -142,20 +142,24 @@ def _insert_injury(injury_date: str, comment: str) -> str | None:
 
 def insert_competition(args: argparse.Namespace) -> str | None:
     return _insert_competition(
-        args.location, args.kilometers, args.date, args.type_race
+        args.location, args.kilometers, args.date, args.type_race, args.elevation_gain
     )
 
 
 def _insert_competition(
-    location: str, kilometers: float, competition_date: str, race_type: str
+    location: str,
+    kilometers: float,
+    competition_date: str,
+    race_type: str,
+    elevation_gain: float,
 ) -> str | None:
     with duckdb.connect(db_path) as con:
         res = con.execute(
             """
-            INSERT INTO competitions(id, location, length_km, date, race_type)
-            values(uuid(), ?, ?, ?, ?)
+            INSERT INTO competitions(id, location, length_km, date, race_type, elevation_gain)
+            values(uuid(), ?, ?, ?, ?, ?)
             """,
-            [location, kilometers, competition_date, race_type],
+            [location, kilometers, competition_date, race_type, elevation_gain],
         )
         res = res.fetchone()
         if res:

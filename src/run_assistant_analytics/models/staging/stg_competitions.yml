@@ -1,0 +1,25 @@
+models:
+  - name: stg_competitions
+    description: Competitions planned by the user
+    columns:
+      - name: id
+        description: Unique technical ID of the row
+        data_tests:
+          - not_null
+          - unique
+      - name: location
+        description: Name of the location (city) of the official run
+        data_tests:
+          - not_null
+      - name: length_km
+        description: The length of the run in kilometers
+        data_tests:
+          - not_null
+      - name: date
+        description: The date of the competition
+      - name: race_type
+        description: The type of the race
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["trail", "road", "unknown"]

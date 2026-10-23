@@ -49,6 +49,7 @@ parser_competitions.add_argument("-l", "--location")
 parser_competitions.add_argument("-km", "--kilometers")
 parser_competitions.add_argument("-d", "--date")
 parser_competitions.add_argument("-t", "--type_race")
+parser_competitions.add_argument("-e", "--elevation_gain")
 parser_competitions.set_defaults(func=insert_competition)
 
 args = parser.parse_args()
