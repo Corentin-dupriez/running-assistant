@@ -26,6 +26,7 @@ parser_run.add_argument("-ei", "--equipment_id")
 parser_run.add_argument("-mp", "--max_pace")
 parser_run.add_argument("-ap", "--average_pace")
 parser_run.add_argument("-pe", "--perceived_effort")
+parser_run.add_argument("-rt", "--run_type")
 parser_run.set_defaults(func=insert_run)
 
 # Sub parser to add lap information

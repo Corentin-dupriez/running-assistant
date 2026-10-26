@@ -5,7 +5,7 @@ import duckdb
 
 if __name__ == "__main__":
     migrations_folder = Path(os.getcwd()) / "db" / "migrations"
-    last_migration = os.listdir(migrations_folder)[-1]
+    last_migration = sorted(os.listdir(migrations_folder))[-1]
     with open(migrations_folder / last_migration, "r") as f:
         migration_content = f.read()
         if migration_content.strip()[-1] == ";":

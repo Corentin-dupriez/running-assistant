@@ -125,5 +125,15 @@ def retrieve_injuries():
     return queries.retrieve_injuries()
 
 
+@mcp.tool()
+def retrieve_hr_zone_for_run(run_id: str):
+    return queries.retrieve_hr_zones(run_id)
+
+
+@mcp.tool()
+def retrieve_breakdown_per_km_for_run(run_id: str):
+    return queries.retrieve_breakdown_per_km(run_id)
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")

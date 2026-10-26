@@ -1,5 +1,6 @@
 from contextlib import AsyncExitStack
 import os
+from pathlib import Path
 import sys
 import asyncio
 from dotenv import load_dotenv
@@ -19,11 +20,10 @@ async def main() -> None:
     server_scripts = sys.argv[1:]
     clients = {}
 
-    commands, args = ("uv", ["run", "mcp/mcp_server.py"])
-
     async with AsyncExitStack() as stack:
+        server_path = Path(os.path.dirname(__file__)) / "mcp_helpers" / "server.py"
         doc_client = await stack.enter_async_context(
-            MCPClient(command="uv", args=["run", "mcp_helpers/server.py"])
+            MCPClient(command="uv", args=["run", f"{server_path}"])
         )
         clients["doc_client"] = doc_client
 

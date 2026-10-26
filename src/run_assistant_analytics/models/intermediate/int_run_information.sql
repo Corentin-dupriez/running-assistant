@@ -1,5 +1,6 @@
 with strava_data as (
     select
+        uuid() as id,
         cast(
             regexp_replace(
                 distance,
@@ -61,6 +62,7 @@ with strava_data as (
 
 manual_data as (
     select
+        id,
         length_kilometers as length_km,
         time_minutes,
         elevation_gain,

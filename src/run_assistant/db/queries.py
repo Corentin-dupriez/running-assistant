@@ -51,6 +51,34 @@ def retrieve_injuries():
         return res
 
 
+def retrieve_breakdown_per_km(run_id: str):
+    with duckdb.connect(db_path) as con:
+        res = _query_to_recors(
+            con,
+            """
+            SELECT *
+            FROM run_assistant.main.mart_breakdown_per_km
+            WHERE run_id = ?
+            """,
+            [run_id],
+        )
+        return res
+
+
+def retrieve_hr_zones(run_id: str):
+    with duckdb.connect(db_path) as con:
+        res = _query_to_recors(
+            con,
+            """
+            SELECT *
+            FROM run_assistant.main.mart_hr_zones
+            WHERE run_id = ?
+            """,
+            [run_id],
+        )
+        return res
+
+
 def retrieve_planned_competitions():
     with duckdb.connect(db_path) as con:
         res = _query_to_recors(

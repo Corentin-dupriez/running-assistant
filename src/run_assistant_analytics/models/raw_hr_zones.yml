@@ -1,0 +1,6 @@
+sources:
+  - name: raw_hr_zones
+    database: run_assistant
+    schema: main
+    tables:
+      - name: hr_zones
