@@ -4,6 +4,33 @@ sources:
     schema: main
     tables:
       - name: runs
+        columns:
+          - name: id
+            description: The technical ID of the run
+          - name: length_kilometers
+            description: The total length of the run in kilometers
+          - name: time_minutes
+            description: The total length of the run in minutes
+          - name: elevation_gain
+            description: The total elevation gain of the run in meters
+          - name: min_per_km
+            description: The rythm of the run in minutes per kilometers
+          - name: cardiac_freq
+            description: The average cardiac frequency of the run in beats per minute
+          - name: date
+            description: The date of the run in format YYYY-MM-DD
+          - name: equipment_name
+            description: The name of the equipment in free text
+          - name: equipment_id
+            description: The technical ID of the linked equipment, if provided
+          - name: max_pace
+            description: The maximum pace during the run in steps per minute
+          - name: avg_page
+            description: The average pace during the run in steps per minute
+          - name: perceived_effort
+            description: The perceived effort by the user on a scale of 1 to 10
+          - name: run_type
+            description: The type of run, eg "road", "trail"
   - name: raw_strava_runs
     database: run_assistant
     schema: main

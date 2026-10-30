@@ -4,3 +4,10 @@ sources:
     schema: main
     tables:
       - name: injuries
+        columns:
+          - name: id
+            description: Technical ID of the injury row
+          - name: date
+            description: The date of the injury
+          - name: comment
+            description: A free-text comment containing information about the injury. Useful to give context to the LLM

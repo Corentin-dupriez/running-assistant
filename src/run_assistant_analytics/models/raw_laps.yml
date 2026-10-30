@@ -4,3 +4,19 @@ sources:
     schema: main
     tables:
       - name: laps
+        description: Information about a lap of a run. A lap can also represent a kilometer of a run
+        columns:
+          - name: id
+            description: The technical identifier of the row
+          - name: run_id
+            description: The technical identifier of the linked run (runs.id)
+          - name: time_minutes
+            description: The length of the lap in minutes
+          - name: min_per_km
+            description: The rythm of the lap in minutes per kilometers
+          - name: cardiac_freq
+            description: The average cardiac frequency during the lap
+          - name: elevation_gain
+            description: The total elevation gain in meters of the lap
+          - name: cadence
+            description: The average cadence of the lap

@@ -4,3 +4,16 @@ sources:
     schema: main
     tables:
       - name: hr_zones
+        columns:
+          - name: id
+            description: The technical UUID of the row
+          - name: run_id
+            description: The ID of the linked run. Points to runs.id
+          - name: zone_name
+            description: The name of the HR zone. Possible values - "Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"
+          - name: min_hr
+            description: The minimum heart rate boundary for the zone
+          - name: max_hr
+            description: The maximum hear rate boundary for the zone
+          - name: time
+            description: The amount of time spent in a specific zone during a run

@@ -1,0 +1,27 @@
+models:
+  - name: date_spine
+    description: Date spine table used for joining other tables for analytics purposes
+    columns:
+      - name: date_day
+        description: The date in dd/mm/yyyy format
+        data_tests:
+          - not_null
+          - unique
+      - name: year_number
+        description: The year number extracted from the date (ex. 2026)
+        data_tests:
+          - not_null
+      - name: month_number
+        description: The month number extracted from the date (ex. 01)
+        data_tests:
+          - not_null
+      - name: month_name
+        description: The month name in English
+      - name: day_number
+        description: The day number extracted from the date
+      - name: quarter_number
+        description: The quarter number of the date
+      - name: year_quarter
+        description: A concatenation of the year and quarter number in the format {year}-Q{quarter}. ex. 2026-Q1
+      - name: week_number
+        description: The week number of the date

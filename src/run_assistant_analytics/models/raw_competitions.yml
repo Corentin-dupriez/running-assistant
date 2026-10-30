@@ -4,3 +4,16 @@ sources:
     schema: main
     tables:
       - name: competitions
+        columns:
+          - name: id
+            description: Technical unique ID of the row
+          - name: location
+            description: Name of the city where the competition is located
+          - name: length_km
+            description: The length of the run planned in kilometers
+          - name: date
+            description: The date of the competition
+          - name: race_type
+            description: The type of race (road or trail)
+          - name: elevation_gain
+            description: The elevation gain in meters

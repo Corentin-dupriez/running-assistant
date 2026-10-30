@@ -1,0 +1,25 @@
+models:
+  - name: stg_hr_zones
+    description: Heart rate zones during runs
+    columns:
+      - name: id
+        description: Unique technical ID of the row
+        data_tests:
+          - not_null
+          - unique
+      - name: run_id
+        description: Unique identifier of the related run
+        data_tests:
+          - not_null
+      - name: zone_name
+        description: The name of the HR zone
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"]
+      - name: min_hr
+        description: Minimum hear rate for the zone
+      - name: max_hr
+        description: Maximum heart rate for the zone
+      - name: time
+        description: Time in minutes spent in a specific HR zone during the run
