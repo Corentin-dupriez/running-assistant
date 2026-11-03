@@ -1,0 +1,42 @@
+models:
+  - name: int_run_information
+    description: Consolidated table containing runs from different sources (manual, csv, strava ...)
+    columns:
+      - name: id
+        description: Technical unique identifier of the row
+        data_tests:
+          - not_null
+          - unique
+      - name: length_km
+        description: The length of the run in kilometers
+      - name: time_minutes
+        description: The length of the run in minutes
+      - name: elevation_gain
+        description: The total elevation gain of the run in meters
+      - name: min_per_km
+        description: The average rythm of the run in minutes per kilometer
+      - name: date
+        description: The date of the run
+      - name: equipement_name
+        description: The name of the equipment in free text
+      - name: equipement_id
+        description: The Technical ID of the equipment
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('int_equipment')
+                field: id
+      - name: max_pace
+        description: Maximum pace of the user in steps per minute
+      - name: avg_pace
+        description: Average pace of the user in steps per minute
+      - name: intensity
+        description: Intensity or perceived effort of the user for the run
+      - name: training_load
+        description: Training load given or calculated via length in minutes * perceived effort
+      - name: run_type
+        description: The type of run
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["trail", "road"]

@@ -1,0 +1,25 @@
+models:
+  - name: stg_laps
+    description: A breakdown of the run of the user into laps, or into 1 kilometer sections
+    columns:
+      - name: id
+        description: The unique identifier of the row
+        data_tests:
+          - not_null
+          - unique
+      - name: run_id
+        description: The foreign key pointing to the unique ID of the linked run
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_runs')
+                field: id
+      - name: time_minutes
+        description: The time in minutes taken to complete the lap/kilometer
+      - name: cardiac_freq
+        description: The average cardiac frequency of the user during the lap/kilometer
+      - name: elevation_gain
+        description: The total elevation gain during the lap/kilometer
+      - name: cadence
+        description: The cadence of the user in steps per minute during the lap

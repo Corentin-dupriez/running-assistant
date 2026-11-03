@@ -96,19 +96,47 @@ def _insert_run(
 
 
 def insert_lap(args: argparse.Namespace) -> str | None:
-    return _insert_lap(args.run, args.time, args.min_per_km, args.cardiac_freq)
+    return _insert_lap(
+        args.run,
+        args.time,
+        args.min_per_km,
+        args.cardiac_freq,
+        args.elevation_gain,
+        args.cadence,
+    )
 
 
 def _insert_lap(
-    run_id: str, time_minutes: float, min_per_km: float, cardiac_frequency: int
+    run_id: str,
+    time_minutes: float,
+    min_per_km: float,
+    cardiac_frequency: int,
+    elevation_gain: float,
+    cadence: int,
 ) -> str | None:
     with duckdb.connect(db_path) as con:
         res = con.execute(
             """
-            INSERT INTO laps (id, run_id, time_minutes, min_per_km, cardiac_freq) values (uuid(), ?, ?, ?, ?)
+            INSERT INTO laps (
+                id, 
+                run_id, 
+                time_minutes, 
+                min_per_km, 
+                cardiac_freq,
+                elevation_gain,
+                cadence
+                )
+            values (uuid(), ?, ?, ?, ?, ?, ?)
             RETURNING ID
             """,
-            [run_id, time_minutes, min_per_km, cardiac_frequency],
+            [
+                run_id,
+                time_minutes,
+                min_per_km,
+                cardiac_frequency,
+                elevation_gain,
+                cadence,
+            ],
         )
         res = res.fetchone()
         if res:

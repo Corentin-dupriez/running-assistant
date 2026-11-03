@@ -25,3 +25,17 @@ models:
         description: The date when the run took place
         data_tests:
           - not_null
+      - name: equipment_name
+        description: Free text name of the equipment
+      - name: max_pace
+        description: Maximum pace during the race in steps per minute
+      - name: avg_pace
+        description: average pace during the race in steps per minute
+      - name: perceived_effort
+        description: Perceived effort of the run on a scale of 1 to 10
+      - name: run_type
+        description: Type of the run
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["trail", "road"]

@@ -1,4 +1,8 @@
-with strava_data as (
+with
+equipment_cte as (
+  select * from {{ref('int_equipment')}}
+  ),
+strava_data as (
     select
         uuid() as id,
         cast(
@@ -48,36 +52,38 @@ with strava_data as (
             lpad({{ extract_from_date('activity_date', 1)}}, 2, '0')
         ) as date)
         as date,
-        equipment_name,
-        equipment_id,
+        e.equipment_name,
+        e.id::string as equipment_id,
         max_pace,
         avg_pace,
         intensity,
         training_load,
         'road',
         'strava' as source
-    from {{ ref('stg_strava_runs') }}
+    from {{ ref('stg_strava_runs') }} s
+    left join equipment_cte e on e.equipment_name = s.equipment_name
     where activity_type like '%Course%'
 ),
 
 manual_data as (
     select
-        id,
+        r.id,
         length_kilometers as length_km,
         time_minutes,
         elevation_gain,
         round(min_per_km, 2) as min_per_km,
         cardiac_freq,
         date as date,
-        equipment_name,
-        equipment_id,
+        r.equipment_name,
+        e.id::string as equipment_id,
         max_pace,
         avg_pace,
         perceived_effort as intensity,
         time_minutes * perceived_effort as training_load,
         run_type,
         'manual' as source
-    from {{ ref('stg_runs') }}
+    from {{ ref('stg_runs') }} r
+    left join equipment_cte e on e.equipment_name = r.equipment_name
 )
 
 select *

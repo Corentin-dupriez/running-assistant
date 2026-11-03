@@ -1,0 +1,10 @@
+models:
+  - name: stg_injuries
+    description: Injuries that the user suffered, and information about them
+    columns:
+      - name: id
+        description: The unique identifier of the row
+      - name: date
+        description: The date on which the user suffered the injury
+      - name: comment
+        description: A free text containing information about the injury

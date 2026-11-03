@@ -35,6 +35,8 @@ parser_laps.add_argument("-r", "--run")
 parser_laps.add_argument("-t", "--time")
 parser_laps.add_argument("-m", "--min_per_km")
 parser_laps.add_argument("-c", "--cardiac_freq")
+parser_laps.add_argument("-e", "--elevation_gain")
+parser_laps.add_argument("-ca", "--cadence")
 parser_laps.set_defaults(func=insert_lap)
 
 parser_display_runs = subparsers.add_parser("show-runs")
