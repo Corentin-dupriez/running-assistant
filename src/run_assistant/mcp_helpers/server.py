@@ -122,16 +122,51 @@ def insert_strava_data(file_path: str) -> None:
 
 @mcp.tool()
 def retrieve_injuries():
+    """
+    Function that returns the user's injuries. They are composed of an injury date (the date on which the injury took place)
+    and a free-form comment field, giving information on the nature and heaviness of the injury.
+    Returns:
+        A list of injuries that the user suffered
+    """
     return queries.retrieve_injuries()
 
 
 @mcp.tool()
 def retrieve_hr_zone_for_run(run_id: str):
+    """
+    Function that returns the HR zones for a specific run. For each run there are different HR zones
+    starting from "Zone 1" to "Zone 6". Each zone which was reached during the run will have an associated
+    time, which corresponds to the time spent in the zone for that run. Time is represented as a float value,
+    so 5.30 means for example that a user has spent 5min30seconds in a specific zone.
+    If a zone was not reached during the run (there were 0 seconds in that zone), it will not be returned.
+    Args:
+        run_id: The unique UUID of the run for which we are retrieving the heart rate zones
+    Returns:
+        A list of zones reached during a given run
+    """
     return queries.retrieve_hr_zones(run_id)
 
 
 @mcp.tool()
 def retrieve_breakdown_per_km_for_run(run_id: str):
+    """
+    Function that returns a per kilometer breakdown of a specific run.
+    A per-kilometer breakdown is composed of several information for each kilometer:
+        - time to complete the full kilometer
+        - average cardiac frequency during that km
+        - total elevation gain during that kilometer. This data can be interesting for hill
+    training or trail, in order to highlight a specific complex point, or understand trends in cardiac
+    frequency, pace or cadence
+        - cadence in steps per minutes
+
+    This information can be used to have a more detailed breakdown of a run instead of the full run
+    information, which doesn't help in understanding specific situations encountered during the run.
+
+    Args:
+        run_id: The unique UUID of the run from which we are retrieving the breakdown
+    Returns:
+        A list of per-kilometer data
+    """
     return queries.retrieve_breakdown_per_km(run_id)
 
 
