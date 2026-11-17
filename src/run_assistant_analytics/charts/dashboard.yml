@@ -1,0 +1,18 @@
+# title: Test Dashboard
+
+source: analytics
+
+queries:
+  monthly_kilometers:
+    sql: |
+      SELECT month_name || '-' || year_number as month_year,
+      total_kilometers 
+      from mart_monthly_training
+
+charts:
+  monthly_kilometers:
+    title: "Total kilometers ran by month"
+    query: monthly_kilometers
+    type: line
+    x: month_year
+    y: total_kilometers

@@ -86,9 +86,11 @@ manual_data as (
     left join equipment_cte e on e.equipment_name = r.equipment_name
 )
 
+
+
 select *
 from manual_data
 union distinct
 select *
 from strava_data
-order by date desc
+order by date desc, id desc
