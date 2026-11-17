@@ -1,5 +1,0 @@
-id,length_kilometers,time_minutes,elevation_gain,min_per_km,cardiac_freq,date,equipment_name,equipment_id,max_pace,avg_pace,perceived_effort,run_type
-1,1.24,9.17,0.0,7.28,138,2026-11-16,Kiprun Kipcore Gravel,NULL,156.0,181.0,4,road
-2,2.2,12.35,0.0,5.43,165,2026-11-16,Kiprun Kipcore Gravel,NULL,162.0,199.0,7,intervals
-3,0.94,4.4,0.0,4.56,169,2026-11-16,Kiprun Kipcore Gravel,NULL,174.0,234.0,6,intervals
-4,0.72,5.24,0.0,7.26,154,2026-11-16,Kiprun Kipcore Gravel,NULL,155.0,171.0,5,road
