@@ -1,0 +1,20 @@
+sources:
+  - name: raw_intervals
+    database: run_assistant
+    schema: main
+    tables:
+      - name: intervals_csv
+        columns:
+          - name: id
+            description: Technical ID of the interval row
+          - name: run_id
+            description: The unique identifier of the linked run
+          - name: interval_type
+            description: The type of interval (e.g work, rest)
+          - name: distance_meters
+            description: The distance of the interval in meters
+          - name: duration_minutes
+            description: The duration of the interval in minutes
+          - name: rythm
+          - name: cardiac_frequency
+          - name: cadence

@@ -220,4 +220,4 @@ __marimo__/
 #duckdb databases
 *.duckdb
 
-*.csv
+archive/*.csv

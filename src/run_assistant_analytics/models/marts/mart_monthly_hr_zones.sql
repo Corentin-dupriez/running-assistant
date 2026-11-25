@@ -1,3 +1,5 @@
+{{config(materialized="view", sort="month_year")}}
+
 with date_spine_cte as (
     select
         date_day,

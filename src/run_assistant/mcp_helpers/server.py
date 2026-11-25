@@ -170,5 +170,29 @@ def retrieve_breakdown_per_km_for_run(run_id: str):
     return queries.retrieve_breakdown_per_km(run_id)
 
 
+@mcp.tool()
+def retrieve_intervals_breakdown(run_id: str):
+    """
+    This function can be used to retrieve the breakdown of the intervals of an intervals session.
+    Instead of offering a per-kilometer breakdown, it returns a breakdown by distance or by time, depending
+    on how the session was structured.
+
+    The tool returns the following information:
+        - interval type (rest, work...)
+        - The distance covered during the interval
+        - time to complete the interval
+        - average ruthm in minutes per kilometer
+        - average cardiac frequency
+        - cadence in steps per minutes
+
+    """
+    return queries.retrieve_intervals_breakdown(run_id)
+
+
+@mcp.tool()
+def retrieve_weekly_hr_zones():
+    return queries.retrieve_weekly_hr_data()
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
